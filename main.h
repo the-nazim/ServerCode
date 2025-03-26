@@ -12,4 +12,7 @@
 
 using namespace std;
 
-void extract_data(const string data);
+void extract_client1(const string data);
+void extract_client2(const string data);
+void extract_client3(const string data);
+void extract_client4(const string data);

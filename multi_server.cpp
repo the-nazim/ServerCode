@@ -56,7 +56,19 @@ int main()
                 memset(serv_buffer, 0, sizeof(serv_buffer));
                 recv(data_sock_fd, serv_buffer, SERVER_BUFF, 0);
                 cout<< serv_buffer << endl;
-                extract_data(serv_buffer);
+                // extract_data(serv_buffer);
+                if(serv_buffer.find("Client1") != string::npos)
+                    extract_client1(serv_buffer);
+                
+                else if(serv_buffer.find("Client2") != string::npos)
+                    extract_client2(serv_buffer);
+
+                // else if(serv_buffer.find("Client3") != string::npos)
+                //     extract_client3(serv_buffer);
+
+                // else if(serv_buffer.find("Client4") != string::npos)
+                //     extract_client4(serv_buffer);
+
             }
             close(data_sock_fd);
             exit(0);

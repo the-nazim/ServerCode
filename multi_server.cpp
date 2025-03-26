@@ -5,6 +5,7 @@ int main()
     int sock_fd, data_sock_fd, pid;
     struct sockaddr_in serv_addr;
     char serv_buffer[SERVER_BUFF];
+    string serv_data;
 
     cout << "TCP_SERVER: Concurrent server is waiting..." << endl;
 
@@ -54,20 +55,22 @@ int main()
             while(true)
             {
                 memset(serv_buffer, 0, sizeof(serv_buffer));
+                serv_data.clear();
                 recv(data_sock_fd, serv_buffer, SERVER_BUFF, 0);
                 cout<< serv_buffer << endl;
+                serv_data += serv_buffer;
                 // extract_data(serv_buffer);
-                if(serv_buffer.find("Client1") != string::npos)
+                if(serv_data.find("Client1") != string::npos)
                     extract_client1(serv_buffer);
                 
-                else if(serv_buffer.find("Client2") != string::npos)
+                else if(serv_data.find("Client2") != string::npos)
                     extract_client2(serv_buffer);
 
-                // else if(serv_buffer.find("Client3") != string::npos)
-                //     extract_client3(serv_buffer);
+                else if(serv_buffer.find("Client3") != string::npos)
+                    extract_client3(serv_buffer);
 
-                // else if(serv_buffer.find("Client4") != string::npos)
-                //     extract_client4(serv_buffer);
+                else if(serv_buffer.find("Client4") != string::npos)
+                    extract_client4(serv_buffer);
 
             }
             close(data_sock_fd);

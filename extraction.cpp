@@ -5,6 +5,7 @@ void extract_client1(const string data)
     string str = data.substr(data.find(':')+2);
     stringstream ss(str);
     string token;
+    string res="";
     while(getline(ss, token, ';'))
     {
         int pos = token.find('=');
@@ -12,8 +13,10 @@ void extract_client1(const string data)
         {
             string key = token.substr(0,pos);
             string value = token.substr(pos+1);
+            res += key + ":" + value + "|";
             cout<< key << " : " << value << endl;
         }
+
     }
 }
 
